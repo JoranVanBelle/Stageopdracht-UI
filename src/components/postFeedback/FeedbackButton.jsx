@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { FeedbackContext } from "../../contexts/Feedback.context";
 
 export default function FeedbackButton({location}) {
 
   const { updateFeedbackLocation } = useContext(FeedbackContext);
 
-  updateFeedbackLocation(location);
+  useEffect(() => {
+    updateFeedbackLocation(location);
+  }, [location, updateFeedbackLocation])
 
   return(
     <Link to={"/feedback"}>

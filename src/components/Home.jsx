@@ -1,16 +1,21 @@
 import WeatherOverview from "./Overvieuw/WeatherOverview";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { WeatherContext } from "../contexts/Weather.context";
 import Appname from "./Appname";
 
 export default function Home() {
   
-  const { weatherData, updateCurrentWeather } = useContext(WeatherContext);
+  const { weatherData, updateCurrentWeather, updateCurrentIndex } = useContext(WeatherContext);
 
   const handleClick = (elem) => {
     updateCurrentWeather(elem)
   }
+
+  useEffect(() => {
+    sessionStorage.clear();
+    updateCurrentIndex(null);
+  }, []);
 
 return(
   <div style={{height: "100vh", overflowY: "scroll", backgroundImage: "linear-gradient(#99cfe0, white)"}}>

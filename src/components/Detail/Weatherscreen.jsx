@@ -10,10 +10,8 @@ export default function WeatherScreen() {
 
   const minSwipeDistance = 70;
   
-  const { weatherData, currentWeather, updateCurrentWeather } = useContext(WeatherContext);
+  const { weatherData, currentWeather, updateCurrentWeather, currentIndex, updateCurrentIndex } = useContext(WeatherContext);
 
-  // const [currentWeather, setCurrentWeather] = useState({});
-  const [currentIndex, setCurrentIndex] = useState(-1);
   const [loading, setLoading] = useState(true);
   const [warning, setWarning] = useState(false);
 
@@ -43,14 +41,14 @@ export default function WeatherScreen() {
     if (isRightSwipe && currentIndex > 0) {
       setLoading(true);
       updateCurrentWeather(weatherData.at(currentIndex > 0 ? currentIndex - 1 : currentIndex));
-      setCurrentIndex(currentIndex > 0 ? currentIndex - 1 : currentIndex);
+      updateCurrentIndex(currentIndex > 0 ? currentIndex - 1 : currentIndex);
       setSwipePosition(0);
       setLoading(false);
     }
     if(isLeftSwipe &&  currentIndex+1 < weatherData.length) {
       setLoading(true)
       updateCurrentWeather(weatherData.at(currentIndex < weatherData.length ? currentIndex + 1 : currentIndex));
-      setCurrentIndex(currentIndex < weatherData.length ? currentIndex + 1 : currentIndex);
+      updateCurrentIndex(currentIndex < weatherData.length ? currentIndex + 1 : currentIndex);
       setSwipePosition(0);
       setLoading(false);
     }
@@ -62,17 +60,22 @@ export default function WeatherScreen() {
   }
 
   useEffect(() => {
+    
+  }, []);
+
+  useEffect(() => {
     const updateVariables = async () => {
-      // setCurrentWeather(sessionStorage.getItem("currentWeather"));
-      if(weatherData.length && currentWeather) {
-        updateCurrentWeather(currentWeather)
-        setCurrentIndex(weatherData.indexOf(currentWeather));
+      if(weatherData.length) {
+        if(!currentIndex) {
+          updateCurrentIndex(weatherData.indexOf(currentWeather));
+        }
+        updateCurrentWeather(weatherData.at(currentIndex))
         setWarning((10 > parseInt(currentWeather.winddirection) && parseInt(currentWeather.winddirection) >= 0) || (240 > parseInt(currentWeather.winddirection) && parseInt(currentWeather.winddirection) >= 230));
         setLoading(false);
       }
     };
     updateVariables();
-  }, [weatherData, currentIndex, currentWeather, updateCurrentWeather]);
+  }, [weatherData, currentWeather, updateCurrentWeather, currentIndex, updateCurrentIndex]);
 
   return (
 

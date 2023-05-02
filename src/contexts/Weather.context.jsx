@@ -7,6 +7,7 @@ export const WeatherProvider = ({children}) => {
 
   const [weatherData, setWeatherData] = useState([]);
   const [currentWeather, setCurrentWeather] = useState(sessionStorage.getItem('currentWeather'));
+  const [currentIndex, setCurrentIndex] = useState(sessionStorage.getItem("currentIndex"))
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -19,9 +20,15 @@ export const WeatherProvider = ({children}) => {
   const updateCurrentWeather = useCallback((current) => {
     setCurrentWeather(current);
     sessionStorage.setItem('currentWeather', current);
+    sessionStorage.setItem('currentLocation', current.location);
   }, [setCurrentWeather]);
   
-  const value = useMemo (()=> ({weatherData, currentWeather, updateCurrentWeather}), [weatherData, currentWeather, updateCurrentWeather]);
+  const updateCurrentIndex = useCallback((currentIndex) => {
+    setCurrentIndex(currentIndex);
+    sessionStorage.setItem("currentIndex", currentIndex);
+  }, [setCurrentIndex])
+
+  const value = useMemo (()=> ({weatherData, currentWeather, updateCurrentWeather, currentIndex, updateCurrentIndex}), [weatherData, currentWeather, updateCurrentWeather, currentIndex, updateCurrentIndex]);
 
   return (
     <WeatherContext.Provider value={value}>
