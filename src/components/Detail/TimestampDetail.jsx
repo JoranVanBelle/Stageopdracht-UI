@@ -19,10 +19,10 @@ export default function TimestampDetail({time}) {
 
   return(
     <>
-      <div style={{fontFamily: "bodoni", textAlign: "left", padding: "10px 0"}}>
+      <div style={{textAlign: "left", padding: "10px 0"}}>
         <BsCalendar4 /> {measurementDate}
       </div>
-      <div style={{fontFamily: "bodoni", textAlign: "left", padding: "10px 0"}}>
+      <div style={{textAlign: "left", padding: "10px 0"}}>
         <BsClock /> {measurementTime}
       </div>
     </>

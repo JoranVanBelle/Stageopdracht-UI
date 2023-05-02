@@ -5,14 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import { WeatherProvider } from './contexts/Weather.context';
+import { FeedbackrProvider } from './contexts/Feedback.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <WeatherProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <FeedbackrProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </FeedbackrProvider>
     </WeatherProvider>
   </React.StrictMode>
 );

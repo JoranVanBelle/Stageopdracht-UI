@@ -1,8 +1,6 @@
-import { BsSun } from "react-icons/bs";
-
 export default function ScorableParameterExplanation({picture, explanation, score}) {
   return(
-    <div style={{fontFamily: "bodoni", display: "grid", gridTemplateColumns: "15% 60% 25%", marginBottom: "5%", paddingLeft: "5%"}}>
+    <div style={{display: "grid", gridTemplateColumns: "15% 60% 25%", marginBottom: "5%", paddingLeft: "5%"}}>
       <div style={{justifySelf: "center", alignSelf: "center"}}>
         {picture}
       </div>

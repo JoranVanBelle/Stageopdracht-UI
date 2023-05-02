@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { BsSun, BsCloudFog, BsCloudRain, BsTsunami, BsWind } from "react-icons/bs";
 import { AiOutlineCompass } from "react-icons/ai";
-import { GiWindsock } from "react-icons/gi";
 
 export default function Feedback({feedbackContent}) {
   
@@ -12,7 +11,7 @@ export default function Feedback({feedbackContent}) {
   }, [feedbackContent])
 
   return(
-    <div style={{fontFamily: "bodoni", display: "grid", gridTemplateColumns: "30% auto auto 30%"}}>
+    <div style={{display: "grid", gridTemplateColumns: "30% auto auto 30%"}}>
       <div></div>
       <div>
         <BsSun />: {content[0]} <br />

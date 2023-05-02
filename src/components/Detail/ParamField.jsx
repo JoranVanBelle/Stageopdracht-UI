@@ -17,18 +17,18 @@ export default function ParamField({weather, warning}) {
 
   return(
     <>
-      <div style={{border: `1px solid ${weather.dataID.includes("Kiteable") ? "#82B366" : warning ? "#e69500" : "#B85450"}`, borderRadius: '15px', backgroundColor:  weather.dataID.includes("Kiteable") ? "#D5E8D4"  : warning ? "#ffe3b1" : "#F8CECC", padding:"10px", margin: "5px", fontFamily: "bodoni", display: "flex", justifyContent: "space-between"}}>
-        <div style={{display: `${showOverlayer ? "block" : "none"}`}}>
-          <ExplanationContainer whenClick={handleClick} content={showOverlayer} />
+      <div style={{border: `1px solid ${weather.dataID.includes("Kiteable") ? "#82B366" : warning ? "#e69500" : "#B85450"}`, borderRadius: '15px', backgroundColor:  weather.dataID.includes("Kiteable") ? "#D5E8D4"  : warning ? "#ffe3b1" : "#F8CECC", padding:"10px", margin: "5px", display: "flex", justifyContent: "space-between"}}>
+        <div style={{display: `${showOverlayer ? "block" : "none"}`, bottom: "0"}}>
+          <ExplanationContainer whenClick={handleClick} content={showOverlayer} style={{}} />
         </div>
           <div style={{display: "flex", flexDirection: "column"}}>
             <Location location={weather.location} />
             <ParameterDetail picture={<BsWind />} value={weather.windspeed} unit={weather.windspeedUnit} threshold={7.717} />
             <ParameterDetail picture={<BsTsunami />} value={weather.waveheight} unit={weather.waveheightUnit} threshold={151} />
-            <ParameterDetail picture={<AiOutlineCompass />} value={weather.winddirection} unit={weather.winddirectionUnit} threshold={new Array(10.00, 230.00)} />
+            <ParameterDetail picture={<AiOutlineCompass />} value={weather.winddirection} unit={weather.winddirectionUnit} threshold={[10.00, 230.00]} />
             <TimestampDetail time={weather.timestamp} />
           </div>
-          <div style={{}} onClick={() => handleClick()}>
+          <div style={{alignSelf: "start"}} onClick={() => handleClick()}>
             <IoMdInformationCircleOutline style={{fontSize: "20px"}}/>
           </div>
       </div>

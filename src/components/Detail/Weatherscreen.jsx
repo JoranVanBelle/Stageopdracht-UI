@@ -1,38 +1,98 @@
-import { useEffect, useState, useContext, useCallback } from "react";
-import { useParams } from "react-router";
+import { useEffect, useState, useContext } from "react";
 import { WeatherContext } from "../../contexts/Weather.context";
 import Loader from "../Loader";
-import Title from "./Title";
-import ParamField from "./ParamField";
-import FeedbackContainer from "../feedbackDisplay/FeedbackContainer";
+import DetailedWeather from "./DetailedWeather";
+import WeatherPosition from "./WeatherPosition";
+import FeedbackButton from "../postFeedback/FeedbackButton";
+import BackToHomeButton from "./BackToHomeButton";
 
 export default function WeatherScreen() {
 
-  const { dataID } = useParams();
-  const { weatherData } = useContext(WeatherContext);
-  // const [weatherData, setWeatherData] = useState([])
-  const [detailedWeather, setDetailedWeather] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState();
+  const minSwipeDistance = 70;
+  
+  const { weatherData, currentWeather, updateCurrentWeather } = useContext(WeatherContext);
+
+  // const [currentWeather, setCurrentWeather] = useState({});
+  const [currentIndex, setCurrentIndex] = useState(-1);
   const [loading, setLoading] = useState(true);
   const [warning, setWarning] = useState(false);
 
+  const [touchStart, setTouchStart] = useState(null)
+  const [touchEnd, setTouchEnd] = useState(null)
+  const [swipePosition, setSwipePosition] = useState(0);
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null) // otherwise the swipe is fired even with usual touch events
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+    // For swipe animation
+    const swipeDistance = e.targetTouches[0].clientX - touchStart;
+    if(Math.abs(swipeDistance) > minSwipeDistance) {
+      setSwipePosition(swipeDistance > 0 ? swipeDistance-minSwipeDistance : swipeDistance+minSwipeDistance);
+    }
+  }
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+    if (isRightSwipe && currentIndex > 0) {
+      setLoading(true);
+      updateCurrentWeather(weatherData.at(currentIndex > 0 ? currentIndex - 1 : currentIndex));
+      setCurrentIndex(currentIndex > 0 ? currentIndex - 1 : currentIndex);
+      setSwipePosition(0);
+      setLoading(false);
+    }
+    if(isLeftSwipe &&  currentIndex+1 < weatherData.length) {
+      setLoading(true)
+      updateCurrentWeather(weatherData.at(currentIndex < weatherData.length ? currentIndex + 1 : currentIndex));
+      setCurrentIndex(currentIndex < weatherData.length ? currentIndex + 1 : currentIndex);
+      setSwipePosition(0);
+      setLoading(false);
+    }
+    setSwipePosition(0);
+  };
+  
+  const onTouchCancel = () => {
+    setSwipePosition(0)
+  }
 
   useEffect(() => {
-    // setWeatherData(localStorage.getItem("weatherData"))
-    const temp = weatherData.filter(elem => elem.dataID === dataID)[0]
-    setDetailedWeather(temp)
-    setWarning((10 > parseInt(temp.winddirection) && parseInt(temp.winddirection) >= 0) || (240 > parseInt(temp.winddirection) && parseInt(temp.winddirection) >= 230))
-    setLoading(false)
-  }, [weatherData, dataID]);
+    const updateVariables = async () => {
+      // setCurrentWeather(sessionStorage.getItem("currentWeather"));
+      if(weatherData.length && currentWeather) {
+        updateCurrentWeather(currentWeather)
+        setCurrentIndex(weatherData.indexOf(currentWeather));
+        setWarning((10 > parseInt(currentWeather.winddirection) && parseInt(currentWeather.winddirection) >= 0) || (240 > parseInt(currentWeather.winddirection) && parseInt(currentWeather.winddirection) >= 230));
+        setLoading(false);
+      }
+    };
+    updateVariables();
+  }, [weatherData, currentIndex, currentWeather, updateCurrentWeather]);
 
   return (
-    
-    loading ? <Loader /> :
-    <div>
-      <Title dataID={dataID} location={detailedWeather.location} warning={warning} />
-      <ParamField weather={detailedWeather} warning={warning} />
-      <FeedbackContainer weather={detailedWeather} warning={warning} />
-    </div>
-  );
 
+    loading ? <Loader /> :
+    <>
+      <div onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} onTouchCancel={onTouchCancel} style={{position: "relative", transform: `translateX(${swipePosition}px)`}}>
+        <DetailedWeather detailedWeather={weatherData.at(currentIndex)} warning={warning} />
+      </div>
+      <div style={{textAlign: "center", paddingTop: "3px"}}>
+        <WeatherPosition index={currentIndex} weatherData={weatherData} key={"weahterPosition"+currentIndex} />
+      </div>
+      <div style={{display: "flex", justifyContent: "space-between", padding: "7% 5%"}}>
+        <div>
+          <FeedbackButton location={currentWeather.location} />
+        </div>
+        <div style={{paddingRight: "40px"}}>
+          <BackToHomeButton />
+        </div>
+      </div>
+    </>
+  );
+  
 }

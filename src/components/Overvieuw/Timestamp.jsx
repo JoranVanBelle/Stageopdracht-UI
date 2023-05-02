@@ -7,7 +7,7 @@ export default function Timestamp({time}) {
 
   useEffect(() => {
     const updateTime = async () => {
-      const date = format(new Date(time), 'dd/MM/yyyy - HH:mm')
+      const date = format(new Date(time), 'dd/MM/yyyy - HH mm')
       setTimestamp(date)
     };
     updateTime();
@@ -15,8 +15,8 @@ export default function Timestamp({time}) {
 
   return(
     <>
-      <div style={{textAlign: "left", fontWeight: "bold"}}>
-        {timestamp}
+      <div style={{textAlign: "right", fontWeight: "bold", fontSize: "9px", paddingBottom: "2px"}}>
+        Last update: {timestamp}
       </div>
     </>
   );

@@ -1,5 +1,3 @@
-import { BsSun, BsCloudRain, BsTsunami } from "react-icons/bs";
-
 const FEEDBACK_DATA = [
   {
     "feedback":`5/5\n0/5\n0/5\n5/5\n3/5\n4/5`,

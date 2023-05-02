@@ -17,11 +17,11 @@ export default function FeedbackTimestamp({time}) {
   }, [time]);
 
   return(
-    <div style={{paddingLeft: "10px"}}>
-      <div style={{fontFamily: "bodoni", textAlign: "left"}}>
+    <div style={{paddingLeft: "10px"}} >
+      <div style={{textAlign: "left"}}>
         <BsCalendar4 /> {measurementDate}
       </div>
-      <div style={{fontFamily: "bodoni", textAlign: "left"}}>
+      <div style={{textAlign: "left"}}>
         <BsClock /> {measurementTime}
       </div>
     </div>
