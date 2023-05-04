@@ -8021,6 +8021,14 @@
   "resolved" "https://registry.npmjs.org/react-swipeable/-/react-swipeable-7.0.0.tgz"
   "version" "7.0.0"
 
+"react-touch-drag-slider@^2.2.5":
+  "integrity" "sha512-4qTPbYaXl9QB8GUZZ2WgdKsVvbC6J+naMKeju4HRxWt2/pWzn+M76dlSv5gZRuinqKSeJ0W4Duy5LMjRQbDIxQ=="
+  "resolved" "https://registry.npmjs.org/react-touch-drag-slider/-/react-touch-drag-slider-2.2.5.tgz"
+  "version" "2.2.5"
+  dependencies:
+    "react" "^18.2.0"
+    "react-dom" "^18.2.0"
+
 "react-transition-group@^4.4.5":
   "integrity" "sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g=="
   "resolved" "https://registry.npmjs.org/react-transition-group/-/react-transition-group-4.4.5.tgz"

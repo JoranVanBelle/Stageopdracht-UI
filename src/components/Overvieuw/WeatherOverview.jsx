@@ -21,8 +21,8 @@ export default function WeatherOverview({location, dataID, timestamp, winddirect
   return(
     <>
       <div style={{border: "1px solid white", borderRadius: "10px", margin: "10px 2px", padding: "0px 3%", backgroundImage: `linear-gradient(to left, #d3d3d3 , ${kiteable ? "#82B366": warning ? "#e69500" : "#B85450"})`, display: "flex", flexDirection: "column"}} key={"weatheroverview"}>
-        <div style={{position: "absolute", right: "5%"}}>
-          <TbMathGreater style={{fontSize: "13px", paddingTop: "25px"}} />
+        <div style={{position: "absolute", right: "5%", marginTop: "2vh"}}>
+          <TbMathGreater style={{fontSize: "20px", color: "black"}} />
         </div>
         <div style={{top: "0"}}>
           <Location location={location} key={dataID+location} />

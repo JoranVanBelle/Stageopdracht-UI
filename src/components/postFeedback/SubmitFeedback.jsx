@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useFormContext } from 'react-hook-form';
+import { MdCheckCircle } from "react-icons/md"
 
 export default function SubmitFeedback() {
 
@@ -26,7 +27,7 @@ export default function SubmitFeedback() {
   return(
     <div >
       <button type="submit" style={{textDecoration: "underline", color: "darkgray"}} onClick={handleClick} disabled={isSubmitting}>
-        Submit feedback
+        <MdCheckCircle style={{color: "black", fontSize: "26px"}} />
       </button>
     </div>
   );

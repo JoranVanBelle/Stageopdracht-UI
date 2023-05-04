@@ -1,6 +1,6 @@
 export default function BackgroundExplanation({picture, explanation}) {
   return(
-    <div style={{display: "grid", gridTemplateColumns: "15% 60%", marginBottom: "5%", paddingLeft: "5%"}}>
+    <div style={{display: "grid", gridTemplateColumns: "15% 60%", marginBottom: "5%", paddingLeft: "5%", paddingBottom: "3%"}}>
       <div style={{justifySelf: "center", alignSelf: "center"}}>
         {picture}
       </div>

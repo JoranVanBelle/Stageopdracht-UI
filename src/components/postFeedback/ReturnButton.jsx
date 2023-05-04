@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
 import { useFormContext } from 'react-hook-form';
+import { MdCancel } from "react-icons/md"
 
 export default function ReturnButton() {
 
@@ -14,8 +15,8 @@ export default function ReturnButton() {
   }
   return(
     <div >
-      <button type="submit" style={{textDecoration: "underline", color: "darkgray"}} onClick={handleClick} disabled={isSubmitting}>
-        Cancel feedback
+      <button type="button" style={{textDecoration: "underline", color: "darkgray"}} onClick={handleClick} disabled={isSubmitting}>
+        <MdCancel style={{color: "black", fontSize: "26px"}} />
       </button>
     </div>
   );

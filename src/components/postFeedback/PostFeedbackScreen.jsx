@@ -17,7 +17,7 @@ export default function PostFeedbackScreen() {
 
   const delay = ms => new Promise(res => setTimeout(res, ms));
   const timeout = 5000;
-  const [anonymousNames, setAnonymousNames] = useState(["AnonymousSeal", "FishyFriend", "ShyShrimp", "FlipperFan"]);
+  const anonymousNames = ["AnonymousSeal", "FishyFriend", "ShyShrimp", "FlipperFan"];
   const [location, setLocation] = useState("neverland");
   const [showPopup, setShowPopup] = useState(false);
   const [colorPopup, setColorPopup] = useState("128, 0,0");
@@ -61,11 +61,11 @@ export default function PostFeedbackScreen() {
   }, [])
 
   return (
-    <div style={{}}>
-      <div style={{display: "block"}}>
+    <div style={{display: "grid", gridTemplateRows: "auto auto auto", height: "100vh", width: "100vw"}}>
+      <div style={{display: `${showPopup ? "block" : "none"}`}}>
         {showPopup ? <FeedbackPopup timeout={timeout} startPopup={true} colorPopup={colorPopup} /> : null}
       </div>
-      <h1 style={{fontSize: "30px", textAlign: "center"}}>Feedback for {location}</h1>
+      <h1 style={{fontSize: "30px", textAlign: "center", alignSelf: "center", display: `${showPopup ? "none" : "block"}`}}>Feedback for {location}</h1>
       <FormProvider
         handleSubmit={handleSubmit}
         errors={errors}
@@ -73,7 +73,7 @@ export default function PostFeedbackScreen() {
         isSubmitting={isSubmitting}
       >
         <form onSubmit={handleSubmit(onSubmit)} className="w-50 mb-3" style={{display: `${showPopup ? "none" : "block"}`}}>
-          <div style={{marginLeft: "3%"}}>
+          <div style={{marginLeft: "3%", marginTop: "5%"}}>
             <InputField label={<BiUser />} placeholder={"Optional username..."} name={"Username"} minLenght={0} maxLength={15} />
             <LocationInputField label={<GoLocation />} location={location} name={"Location"} />
             <div style={{display: "flex", justifyContent: "space-between", flexDirection: "column"}}>
@@ -85,9 +85,9 @@ export default function PostFeedbackScreen() {
               <p> <AiOutlineCompass />: <SliderFeedback arealabel={"Winddirection"} /> </p>
             </div>
           </div>
-          <div style={{display: "flex", justifyContent: "space-between", padding: "0 5%"}}>
-          <SubmitFeedback />
-          <ReturnButton />
+          <div style={{display: "flex", justifyContent: "space-around", marginTop: "10vh"}}>
+            <SubmitFeedback />
+            <ReturnButton />
           </div>
         </form>
       </FormProvider>

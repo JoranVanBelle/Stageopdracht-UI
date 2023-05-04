@@ -8,7 +8,7 @@ import BackgroundExplanation from "./BackgroundInformation";
 import ScorableParameterExplanation from "./ScorableParameterInformation";
 import Breakline from "./Breakline";
 
-export default function ExplanationContainer({whenClick, content}) {
+export default function ExplanationContainer({whenClicked, content}) {
 
   const overlayRef = useRef(null);
 
@@ -17,9 +17,9 @@ export default function ExplanationContainer({whenClick, content}) {
   }, [content])
 
   return(
-    <div style={{position: "fixed", width: "100%", height: "100%", top: "0", right: "0", bottom: "0", left: "0", color: "white", backgroundColor: "rgba(0,0,0,0.83)", overflowX: "hidden"}} ref={overlayRef}>
+    <div style={{position: "static", width: "100%", height: "100vh", bottom: "0", color: "white", backgroundColor: "rgba(0,0,0,0.83)", overflowX: "hidden"}} ref={overlayRef}>
       <div style={{position:"fixed", right: "0", paddingRight: "5%", paddingTop: "5%", marginBottom: "5%"}}>
-        <AiOutlineCloseCircle style={{color: "white", fontSize: "20px"}} onClick={whenClick} />
+        <AiOutlineCloseCircle style={{color: "white", fontSize: "20px"}} onClick={whenClicked} />
       </div>
       <div style={{display: "grid", gridTemplateColumns: "15% 60% 25%", marginTop: "15%", paddingBottom: "5%", paddingLeft: "5%"}}>
         <div style={{textAlign: "center", alignSelf: "center"}}>Symbol</div>
