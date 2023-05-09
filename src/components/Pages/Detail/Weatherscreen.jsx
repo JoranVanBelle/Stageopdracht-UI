@@ -1,15 +1,15 @@
 import { useEffect, useState, useContext } from "react";
-import { WeatherContext } from "../../contexts/Weather.context";
-import Loader from "../Loader";
+import { WeatherContext } from "../../../contexts/Weather.context";
+import Loader from "../../Loader";
 import DetailedWeather from "./DetailedWeather";
 import WeatherPosition from "./WeatherPosition";
 import Slider from "react-touch-drag-slider";
 import ExplanationContainer from "../Explanation/ExplanationContainer";
-import backgroundImage from "../../images/kitesurfing background.jpg";
+import backgroundImage from "../../../images/kitesurfing background.jpg";
 
 export default function WeatherScreen() {
   
-  const { weatherData, updateCurrentWeather, currentLocation, updateCurrentLocation, currentIndex, updateCurrentIndex } = useContext(WeatherContext);
+  const { weatherData, currentIndex, updateCurrentIndex, updateCurrentLocation } = useContext(WeatherContext);
 
   const [loading, setLoading] = useState(true);
   const [showOverlayer, setshowOverlayer] = useState(false);
@@ -33,9 +33,10 @@ export default function WeatherScreen() {
       <Slider
         onSlideComplete={(i) => {
           updateCurrentIndex(i)
+          updateCurrentLocation(weatherData.at(i).location)
         }}
         activeIndex={currentIndex}
-        threshHold={70}
+        threshHold={200}
         transition={0}
         scaleOnDrag={false}
 

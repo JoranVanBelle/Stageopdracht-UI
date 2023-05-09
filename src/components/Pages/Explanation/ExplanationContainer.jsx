@@ -7,6 +7,7 @@ import { BiUser } from "react-icons/bi";
 import BackgroundExplanation from "./BackgroundInformation";
 import ScorableParameterExplanation from "./ScorableParameterInformation";
 import Breakline from "./Breakline";
+import backgroundImage from "../../../images/Windrose-removebg-preview (2).png";
 
 export default function ExplanationContainer({whenClicked, content}) {
 
@@ -40,8 +41,7 @@ export default function ExplanationContainer({whenClicked, content}) {
         <ScorableParameterExplanation 
           picture={<AiOutlineCompass style={{fontSize: "24px"}} />} 
           explanation={"The winddirection is important for the safety of the kitesurfer. When there is off-shore wind (wind blowing from the land into the sea), it can be dangerous for the kiter. When this type of wind occurs, it is a lot more diffuclt to get back towards the land. You can give a score for the waves out of 5."} 
-          score={<img src={require("../../images/Windrose-removebg-preview (2).png")} alt="Difficult: 0-240 deg Safe: 10-230 deg" style={{width: "100%"}}/>} />
-        {/* <div>Difficult:<br/>0-240 deg<br/>Safe:<br/>10-230 deg</div> */}
+          score={<img src={`${backgroundImage}`} alt="Difficult: 0-240 deg Safe: 10-230 deg" style={{width: "100%"}}/>} />
         <Breakline />
 
         <ScorableParameterExplanation 
@@ -75,7 +75,7 @@ export default function ExplanationContainer({whenClicked, content}) {
 
         <BackgroundExplanation
           picture={<BiUser style={{fontSize: "24px"}} />}
-          explanation={"This symbol indicates that the information next to it is the username. When someone wants to be anonymous when giving feedback, the username will be anonymousSeal"} />
+          explanation={"This symbol indicates that the information next to it is the username. When someone wants to be anonymous when giving feedback, the username will be randomly chosen from a list"} />
       </div>
     </div>
   );

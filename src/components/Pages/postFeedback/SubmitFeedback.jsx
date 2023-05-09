@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useFormContext } from 'react-hook-form';
 import { MdCheckCircle } from "react-icons/md"
 
-export default function SubmitFeedback() {
+export default function   SubmitFeedback() {
 
   const [showPopup, setShowPopup] = useState(false);
 

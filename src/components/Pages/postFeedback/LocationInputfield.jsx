@@ -1,6 +1,5 @@
 import { useFormContext } from 'react-hook-form';
 
-
 export default function LocationInputField({label, location, name}) {
 
   const {
@@ -8,7 +7,7 @@ export default function LocationInputField({label, location, name}) {
   } = useFormContext();
 
   return (
-    <div className="mb-3" style={{}}>
+    <div className="mb-3" style={{paddingLeft: "5px"}}>
       <label>
         {label}:
       </label>

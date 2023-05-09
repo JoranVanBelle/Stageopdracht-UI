@@ -2,7 +2,8 @@ import { useCallback, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 
-export default function InputField({label, placeholder, name, minLenght, maxLength}) {
+export default function InputField({label, placeholder, name, maxLength}) {
+
 
   const [count, setCount] = useState(0);
   const [username, setUsername] = useState('');
@@ -12,28 +13,29 @@ export default function InputField({label, placeholder, name, minLenght, maxLeng
   } = useFormContext();
 
   const handleChange = useCallback((value) => {
+    setUsername(name === "Email" ? value.replace(/[^a-z-0-9@.]/, '') : value.replace(/[^a-z-0-9]/, ''));
     setCount(value.length);
-    setUsername(value.replace(/[^a-z-0-9]/, ''));
-  }, [])
+  }, [name])
 
   return (
-    <div className="mb-3" style={{}}>
+    <div className="mb-3" style={{paddingLeft: "5px"}}>
       <label>
         {label}:
       </label>
       <input
         id={name}
         {...register(name)}
-        placeholder={placeholder}
-        minLength={minLenght}
         maxLength={maxLength}
+        placeholder={placeholder}
         style={{border: "none", borderBottom: "1px solid darkgray", margin: "3% 5%", padding: "0 0 0 5px"}}
         onChange={e => handleChange(e.target.value)}
         disabled={isSubmitting}
         value={username}
-        autocomplete="off"
+        autoComplete="off"
+        type={name === "Email" ? name : ""}
+        required={name === "Email"}
       />
-      {count}/{maxLength}
+      {name === "Email" ? "" : count + " / " + maxLength}
     </div>
   );
 }

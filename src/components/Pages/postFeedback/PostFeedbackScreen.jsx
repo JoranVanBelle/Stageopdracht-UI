@@ -9,7 +9,7 @@ import SubmitFeedback from "./SubmitFeedback";
 import ReturnButton from "./ReturnButton";
 import InputField from "./Inputfield";
 import { FormProvider, useForm } from 'react-hook-form';
-import * as feedbackApi from "../../api/feedback";
+import * as feedbackApi from "../../../api/feedback";
 import LocationInputField from "./LocationInputfield";
 import FeedbackPopup from "./FeedbackPopup";
 
@@ -35,10 +35,12 @@ export default function PostFeedbackScreen() {
 
     try {
       await feedbackApi.postFeedback({
-        Location: sessionStorage.getItem("currentLocation"),
-        Username: !Username ? anonymousNames[Math.floor(Math.random() * anonymousNames.length)] : Username,
-        Comment: `${Sun}/5\n${Rain}/5\n${Fog}/5\n${Windspeed}/5\n${Waveheight}/5\n${Winddirection}/5`,
-        date: Date.now(),
+        "feedback": {
+          "Location": sessionStorage.getItem("currentLocation"),
+          "Username": !Username ? anonymousNames[Math.floor(Math.random() * anonymousNames.length)] : Username,
+          "Comment": `${Sun}/5\n${Rain}/5\n${Fog}/5\n${Windspeed}/5\n${Waveheight}/5\n${Winddirection}/5`,
+          "SentAt": new Date().getTime(),
+        }
       });
       setColorPopup("0,128,0")
       setShowPopup(true);
@@ -63,7 +65,7 @@ export default function PostFeedbackScreen() {
   return (
     <div style={{display: "grid", gridTemplateRows: "auto auto auto", height: "100vh", width: "100vw"}}>
       <div style={{display: `${showPopup ? "block" : "none"}`}}>
-        {showPopup ? <FeedbackPopup timeout={timeout} startPopup={true} colorPopup={colorPopup} /> : null}
+        {showPopup ? <FeedbackPopup timeout={timeout} startPopup={true} colorPopup={colorPopup} text={"Feedback sent"} /> : null}
       </div>
       <h1 style={{fontSize: "30px", textAlign: "center", alignSelf: "center", display: `${showPopup ? "none" : "block"}`}}>Feedback for {location}</h1>
       <FormProvider
@@ -74,9 +76,9 @@ export default function PostFeedbackScreen() {
       >
         <form onSubmit={handleSubmit(onSubmit)} className="w-50 mb-3" style={{display: `${showPopup ? "none" : "block"}`}}>
           <div style={{marginLeft: "3%", marginTop: "5%"}}>
-            <InputField label={<BiUser />} placeholder={"Optional username..."} name={"Username"} minLenght={0} maxLength={15} />
+            <InputField label={<BiUser />} placeholder={"Optional username..."} name={"Username"} maxLength={15} />
             <LocationInputField label={<GoLocation />} location={location} name={"Location"} />
-            <div style={{display: "flex", justifyContent: "space-between", flexDirection: "column"}}>
+            <div style={{display: "flex", justifyContent: "space-between", flexDirection: "column", paddingLeft: "5px"}}>
               <p> <BsSun />: <SliderFeedback arealabel={"Sun"} /> </p>
               <p> <BsCloudRain />: <SliderFeedback arealabel={"Rain"} /> </p>
               <p> <BsCloudFog />: <SliderFeedback arealabel={"Fog"} /> </p>

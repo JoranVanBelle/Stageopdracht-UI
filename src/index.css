@@ -34,3 +34,8 @@ button:hover {
 input:focus {
   outline: none;
 }
+
+@font-face {
+  font-family: 'cymo';
+  src: local('cymo'), url(./fonts/cymo/ABCFavorit-Light.woff) format('woff');
+}

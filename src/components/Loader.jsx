@@ -2,7 +2,7 @@ export default function Loader({ loading }) {
   if (loading) {
     return (
       <>
-        <p>Loading...</p>
+        <p className="font-face-cymo">Loading...</p>
       </>
     );
   }
