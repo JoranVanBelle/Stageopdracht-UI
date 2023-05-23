@@ -1,5 +1,6 @@
 import { Slider } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
+import { BiHappyBeaming,BiSad } from "react-icons/bi";
 
 export default function SliderFeedback({arealabel}) {
 
@@ -8,7 +9,9 @@ export default function SliderFeedback({arealabel}) {
   } = useFormContext();
 
   return(
-      <Slider style={{width: "50%", height: "25%", marginLeft: "5%", paddingTop: "0px"}}
+    <>
+      <BiSad style={{margin: "0 10px"}}/>
+      <Slider style={{width: "50%", height: "25%", paddingTop: "0px"}}
       aria-label={arealabel}
       {...register(arealabel)}
       defaultValue={3}
@@ -20,5 +23,7 @@ export default function SliderFeedback({arealabel}) {
       max={5}
       disabled={isSubmitting}
     />
+    <BiHappyBeaming style={{marginLeft: "10px"}}/>
+    </>
   );
 }

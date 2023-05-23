@@ -5,19 +5,25 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import { WeatherProvider } from './contexts/Weather.context';
-import { FeedbackrProvider } from './contexts/Feedback.context';
+import { FeedbackProvider } from './contexts/Feedback.context';
 import './fonts/cymo/ABCFavorit-Bold.woff'
+import { Notificationprovider } from './contexts/Notification.context';
+import { UserProvider } from './contexts/User.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <WeatherProvider>
-      <FeedbackrProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </FeedbackrProvider>
-    </WeatherProvider>
+    <UserProvider>
+      <WeatherProvider>
+        <Notificationprovider>
+          <FeedbackProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </FeedbackProvider>
+        </Notificationprovider>
+      </WeatherProvider>
+    </UserProvider>
   </React.StrictMode>
 );
 

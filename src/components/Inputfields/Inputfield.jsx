@@ -13,9 +13,9 @@ export default function InputField({label, placeholder, name, maxLength}) {
   } = useFormContext();
 
   const handleChange = useCallback((value) => {
-    setUsername(name === "Email" ? value.replace(/[^a-z-0-9@.]/, '') : value.replace(/[^a-z-0-9]/, ''));
+    setUsername(value.replace(/[^a-z-0-9]/, ''));
     setCount(value.length);
-  }, [name])
+  }, [])
 
   return (
     <div className="mb-3" style={{paddingLeft: "5px"}}>
@@ -27,15 +27,13 @@ export default function InputField({label, placeholder, name, maxLength}) {
         {...register(name)}
         maxLength={maxLength}
         placeholder={placeholder}
-        style={{border: "none", borderBottom: "1px solid darkgray", margin: "3% 5%", padding: "0 0 0 5px"}}
+        style={{border: "none", borderBottom: "1px solid darkgray", margin: "3% 5%", padding: "0 0 0 5px", width: "70%"}}
         onChange={e => handleChange(e.target.value)}
         disabled={isSubmitting}
         value={username}
         autoComplete="off"
-        type={name === "Email" ? name : ""}
-        required={name === "Email"}
       />
-      {name === "Email" ? "" : count + " / " + maxLength}
+      {count + " / " + maxLength}
     </div>
   );
 }

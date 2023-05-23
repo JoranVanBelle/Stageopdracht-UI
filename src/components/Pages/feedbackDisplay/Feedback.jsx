@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { BsSun, BsCloudFog, BsCloudRain, BsTsunami, BsWind } from "react-icons/bs";
+import { BsSun, BsCloudFog, BsCloudRain, BsTsunami } from "react-icons/bs";
 import { AiOutlineCompass } from "react-icons/ai";
+import { GiWindsock } from "react-icons/gi";
 
 export default function Feedback({feedbackContent}) {
   
@@ -20,7 +21,7 @@ export default function Feedback({feedbackContent}) {
       </div>
       <div>
         
-        <BsWind />: {content[3]} <br />
+        <GiWindsock />: {content[3]} <br />
         <BsTsunami />: {content[4]} <br />
         <AiOutlineCompass />: {content[5]} <br />
       </div>

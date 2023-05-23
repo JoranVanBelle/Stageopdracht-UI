@@ -2,7 +2,7 @@ import { useState, createContext, useMemo, useCallback } from "react";
 
 export const FeedbackContext = createContext();
 
-export const FeedbackrProvider = ({children}) => {
+export const FeedbackProvider = ({children}) => {
 
   const [feedbackLocation, setFeedbackLocation] = useState(sessionStorage.getItem("currentLocation"));
 

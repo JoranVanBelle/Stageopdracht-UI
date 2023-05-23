@@ -15,7 +15,7 @@ export default function EmailInputField({label, email, name}) {
         id={name}
         {...register(name)}
         value={email}
-        style={{border: "none", borderBottom: "1px solid darkgray", margin: "3% 10%", padding: "0 0 0 5px"}}
+        style={{border: "none", borderBottom: "1px solid darkgray", margin: "3% 5%", padding: "0 15px 0 5px", width: "70%"}}
         disabled={true}
       />
     </div>

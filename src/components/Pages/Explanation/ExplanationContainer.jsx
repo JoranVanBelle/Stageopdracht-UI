@@ -1,9 +1,10 @@
 import { useEffect, useRef } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { GoLocation } from "react-icons/go";
-import { BsWind, BsTsunami, BsSun, BsCloudRain, BsCloudFog, BsCalendar4, BsClock } from "react-icons/bs";
+import { BsTsunami, BsSun, BsCloudRain, BsCloudFog, BsCalendar4, BsClock } from "react-icons/bs";
 import { AiOutlineCompass } from "react-icons/ai";
 import { BiUser } from "react-icons/bi";
+import { GiWindsock } from "react-icons/gi";
 import BackgroundExplanation from "./BackgroundInformation";
 import ScorableParameterExplanation from "./ScorableParameterInformation";
 import Breakline from "./Breakline";
@@ -29,7 +30,7 @@ export default function ExplanationContainer({whenClicked, content}) {
       </div>
       <div style={{paddingLeft: "5%"}}>
         <ScorableParameterExplanation 
-          picture={<BsWind style={{fontSize: "24px"}} />} 
+          picture={<GiWindsock style={{fontSize: "24px"}} />} 
           explanation={"The windspeed is an important element when you want to go kitesurfing. There is a minimum speed required to keep the kite in the air. You can give a score for the waves out of 5."} 
           score={<div>15 knots<br/>or<br/>7.717 m/s</div>} />
 

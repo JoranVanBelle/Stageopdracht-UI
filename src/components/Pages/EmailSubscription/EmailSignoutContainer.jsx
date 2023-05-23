@@ -1,8 +1,8 @@
 import { useParams, useNavigate } from "react-router";
 import * as subApi from "../../../api/subscription";
 import { FormProvider, useForm } from 'react-hook-form';
-import LocationInputField from "../postFeedback/LocationInputfield";
-import EmailInputField from "./EmailInputField";
+import LocationInputField from "../../Inputfields/LocationInputfield";
+import EmailInputField from "../../Inputfields/EmailInputField";
 
 export default function EmailSignoutContainer() {
 
@@ -14,20 +14,16 @@ export default function EmailSignoutContainer() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const {
-      Location, Email
-    } = data;
-
     try {
       await subApi.signout({
         "signout": {
-          "Location": Location,
-          "Username": Email
+          "Location": location,
+          "Username": email
         }
       })
       navigate("/goodbye", {replace: true});
     } catch (err) {
-      console.log("Error caught: " + err)
+      console.err("Error caught: " + err)
     }
   };
 

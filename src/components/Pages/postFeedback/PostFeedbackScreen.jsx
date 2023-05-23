@@ -1,4 +1,4 @@
-import SliderFeedback from "./Slider";
+import SliderFeedback from "../../Inputfields/Slider";
 import { BsWind, BsTsunami, BsSun, BsCloudRain, BsCloudFog } from "react-icons/bs";
 import { AiOutlineCompass } from "react-icons/ai";
 import { BiUser } from "react-icons/bi";
@@ -7,10 +7,10 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import SubmitFeedback from "./SubmitFeedback";
 import ReturnButton from "./ReturnButton";
-import InputField from "./Inputfield";
+import InputField from "../../Inputfields/Inputfield";
 import { FormProvider, useForm } from 'react-hook-form';
 import * as feedbackApi from "../../../api/feedback";
-import LocationInputField from "./LocationInputfield";
+import LocationInputField from "../../Inputfields/LocationInputfield";
 import FeedbackPopup from "./FeedbackPopup";
 
 export default function PostFeedbackScreen() {
@@ -48,7 +48,7 @@ export default function PostFeedbackScreen() {
       navigate(-1);
       setShowPopup(false);
     } catch (err) {
-      console.log("Error caught: " + err)
+      console.err("Error caught: " + err)
       setColorPopup("128, 0,0")
     }
   };
@@ -67,7 +67,10 @@ export default function PostFeedbackScreen() {
       <div style={{display: `${showPopup ? "block" : "none"}`}}>
         {showPopup ? <FeedbackPopup timeout={timeout} startPopup={true} colorPopup={colorPopup} text={"Feedback sent"} /> : null}
       </div>
+      <header style={{border: `${showPopup ? "none" : "1px solid darkgray"}`, margin: "5%", borderRadius: "10px"}}>
       <h1 style={{fontSize: "30px", textAlign: "center", alignSelf: "center", display: `${showPopup ? "none" : "block"}`}}>Feedback for {location}</h1>
+      <div style={{textAlign: "center", display: `${showPopup ? "none" : "block"}`}}>Describe how you feel about the current situation at this location, from 0 being really bad up to 5 being really good.</div>
+      </header>
       <FormProvider
         handleSubmit={handleSubmit}
         errors={errors}

@@ -1,6 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-import { useState, useEffect } from "react";
-import { Notifications } from 'react-push-notification';
 import './App.css';
 import Home from './components/Home';
 import WeatherScreen from './components/Pages/Detail/Weatherscreen';
@@ -9,22 +7,53 @@ import EmailsubContainer from './components/Pages/EmailSubscription/EmailsubCont
 import EmailSignoutContainer from './components/Pages/EmailSubscription/EmailSignoutContainer';
 import Goodbye from './components/Pages/EmailSubscription/Goodbye';
 import SettingsContainer from './components/Pages/Settings/SettingsContainer';
-
-
+import Loginpage from './components/Pages/Login/Loginpage';
+import RequireAuth from './components/Authentication/RequireAuth';
+import MapsContainer from './components/Pages/Maps/MapsContainer';
 
 function App() {
 
   return (
       <div>
-        <Notifications />
         <Routes>
-          <Route index element={<Home />} />
-          <Route path="/location" element={<WeatherScreen />} />
-          <Route path="/feedback" element={<PostFeedbackScreen />} />
-          <Route path="/subscribe/:location" element={<EmailsubContainer/>} />
-          <Route path="/:email/:location" element={<EmailSignoutContainer />} />
-          <Route path='/goodbye' element={<Goodbye />} />
-          <Route path="/settings" element={<SettingsContainer />} />
+          <Route index element={
+          <RequireAuth>
+            <Home />
+          </RequireAuth>} />
+
+          <Route path="/location" element={
+            <RequireAuth>
+              <WeatherScreen />
+            </RequireAuth>} />
+
+          <Route path="/feedback" element={
+          <RequireAuth>
+            <PostFeedbackScreen />
+          </RequireAuth>} />
+
+          <Route path="/subscribe/:location" element={
+            <RequireAuth>
+              <EmailsubContainer/>
+            </RequireAuth>} />
+
+          <Route path="/:email/:location" element={
+            <RequireAuth>
+              <EmailSignoutContainer />
+            </RequireAuth>} />
+
+          <Route path='/goodbye' element={
+            <RequireAuth>
+              <Goodbye />
+            </RequireAuth>} />
+
+          <Route path="/settings" element={
+            <RequireAuth>
+              <SettingsContainer />
+            </RequireAuth>
+          } />
+
+          <Route path="/login" element={<Loginpage />} />
+          <Route path="/temp" element={<MapsContainer />} />
         </Routes>
       </div>
   );
