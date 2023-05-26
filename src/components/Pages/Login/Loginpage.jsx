@@ -13,18 +13,17 @@ export default function Loginpage() {
   }, [signIn]);
 
   useEffect(() => {
-    console.log(`client_id: ${process.env.REACT_APP_GOOGLE_CLIENT_ID}`)
-    window.google.accounts.id.initialize({
-      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+     /* global google */
+    google.accounts.id.initialize({
+      client_id: "239840668285-e2kevg73u95tsfgvku52icgc8c8cbate.apps.googleusercontent.com",
       callback: handleCallbackResponse
     });
 
-    window.google.accounts.id.renderButton(
+    google.accounts.id.renderButton(
       document.getElementById("signInDiv"),
       {theme: "filled_black", size: "large", shape: "pill", width:"300"}
     );
-    
-    window.google.accounts.id.prompt();
+  
   }, [handleCallbackResponse]);
   return(
     <div style={{textAlign: "center", overflowY: "hidden"}}>

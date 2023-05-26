@@ -1,9 +1,10 @@
-import axios from "axios";
+import axios from ".";
 
 export const getLatLonLocation = async (location) => {
   const { data } = await axios.request({
     method: "GET",
-    url: `https://api.myptv.com/geocoding/v1/locations/by-text?searchText=${location}&countryFilter=BE&apiKey=${process.env.REACT_APP_PTV_API_TOKEN}`
+    url: `/ptv/${location}`
   })
+  
   return [data.locations[0].referencePosition.latitude, data.locations[0].referencePosition.longitude];
 }

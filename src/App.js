@@ -42,9 +42,7 @@ function App() {
             </RequireAuth>} />
 
           <Route path='/goodbye' element={
-            <RequireAuth>
-              <Goodbye />
-            </RequireAuth>} />
+              <Goodbye />} />
 
           <Route path="/settings" element={
             <RequireAuth>

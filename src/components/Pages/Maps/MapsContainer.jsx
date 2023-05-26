@@ -29,7 +29,7 @@ export default function MapsContainer() {
 
   useEffect(() => {
     calculateDistance();
-  }, [currentLocation, calculateDistance]);
+  }, [calculateDistance]);
 
   return (
     <div>

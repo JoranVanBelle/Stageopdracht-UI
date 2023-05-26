@@ -14,7 +14,7 @@ export default function EmailSignoutContainer() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    try {
+      console.log("logged out")
       await subApi.signout({
         "signout": {
           "Location": location,
@@ -22,9 +22,6 @@ export default function EmailSignoutContainer() {
         }
       })
       navigate("/goodbye", {replace: true});
-    } catch (err) {
-      console.err("Error caught: " + err)
-    }
   };
 
   return(

@@ -37,7 +37,7 @@ export default function Home() {
   }, [updateCurrentIndex, notificationsNieuwpoort, updateNotificationsNieuwpoort, getUserLocation]);
 
 return(
-  <div style={{height: "100vh", overflowY: "hidden", backgroundImage: "linear-gradient(#99cfe0, white)"}}>
+  <div style={{height: "100%", overflowY: "hidden", backgroundImage: "linear-gradient(#99cfe0, white)", margin: "0", padding: "0"}}>
     <div style={{display: "grid", gridTemplateColumns: "auto 10px"}}>
         <Appname />
         <div style={{position: "absolute", right: "10px", top: "10px"}}>

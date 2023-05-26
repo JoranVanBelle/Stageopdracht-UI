@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from '.';
 
 export const getWeatherNotification = async () => {
-  const {data} = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/notification/weather`);
+  const {data} = await axios.get(`/notification/weather`);
   return data;
 };
